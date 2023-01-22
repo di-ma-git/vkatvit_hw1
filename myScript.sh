@@ -2,9 +2,11 @@
 
 
 FILE=Main.java
-
+FILESIZE=$(stat -c%s "$FILE")
 if [ ! -f "$FILE" ]; then
     echo "$FILE does not exist. Compilation interrapted!"
+elif [ "$FILESIZE" -lt "100"  ]; then
+    echo "$FILE is too small. Compilation interrapted!"
 else
     echo "COMPILING JAVA USUNG JAVAC"
     javac Main.java
